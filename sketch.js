@@ -126,7 +126,7 @@ function draw() {
 	
 	//Setting packageSprite's x and y position same as packageBody's x and y position.
 	packageSprite.x = packageBody.position.x;
-	packageSprite.y = packageBody.position.y-10;
+	packageSprite.y = packageBody.position.y;
 
 	//Setting leftBoxSprite's x and y position same as leftBoxBody's x and y position.
 	leftBoxSprite.x = leftBoxBody.position.x;
