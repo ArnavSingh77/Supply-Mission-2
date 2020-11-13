@@ -96,7 +96,7 @@ function setup() {
 	//Giving red color to them.
 	leftBoxSprite=createSprite(360, 620, 10,50);
 	leftBoxSprite.shapeColor=color(255,0,0);
-	bottomBoxSprite=createSprite(400, 630, 70,30);
+	bottomBoxSprite=createSprite(400, 640, 70,10);
 	bottomBoxSprite.shapeColor=color(255,0,0);
 	rightBoxSprite=createSprite(440, 620, 10,50);
  	rightBoxSprite.shapeColor=color(255,0,0);
@@ -105,12 +105,10 @@ function setup() {
 	//Adding them to Matter.world.
  	leftBoxBody = Bodies.rectangle(360, 620, 10,70 , {isStatic:true} );
  	World.add(world, leftBoxBody);
- 	bottomBoxBody = Bodies.rectangle(400, 630, 70,30 , {isStatic:true} );
+ 	bottomBoxBody = Bodies.rectangle(400, 640, 70,30 , {isStatic:true} );
  	World.add(world, bottomBoxBody);
  	rightBoxBody = Bodies.rectangle(440, 620, 10,70 , {isStatic:true} );
 	World.add(world, rightBoxBody);
-
-	//Running the previously created engine.
 	
 }
 
@@ -126,7 +124,7 @@ function draw() {
 	
 	//Setting packageSprite's x and y position same as packageBody's x and y position.
 	packageSprite.x = packageBody.position.x;
-	packageSprite.y = packageBody.position.y;
+	packageSprite.y = packageBody.position.y-10;
 
 	//Setting leftBoxSprite's x and y position same as leftBoxBody's x and y position.
 	leftBoxSprite.x = leftBoxBody.position.x;
@@ -143,26 +141,9 @@ function draw() {
 	groundSprite.x = ground.position.x;
 	groundSprite.y = ground.position.y;
 
-	//Displaying 'Well Done!' text under certain conditions.
-	/*
-	if(packageSprite.isTouching(bottomBoxSprite) && packageSprite.x > 375 && packageSprite.x < 425) {
-		if(zombieLeft.velocityX === 0 || zombieRight.velocityX === 0) {
-			fill("red");
-			textFont("segoe script");
-			textStyle(BOLD);
-			textSize(30);
-			text("Well Done!", 290,500);
-		}
-	}
-	//Colliding packageSprite with bottomBoxSprite.
-	//packageSprite.collide(bottomBoxSprite);
-	//packageSprite.collide(leftBoxSprite);
-	//packageSprite.collide(rightBoxSprite);
-	//Changing zombieLeft and zombieRight's velocity when packageSprite touches groundSprite.
-	*/
-	//if(packageSprite.isTouching(groundSprite)) {
+
 	if(packageBody.position.y > 600) {	
-		//Matter.Body.setStatic(packageBody,true);
+
 		if(packageBody.position.x > 10 && packageBody.position.x < 350) {
 			zombieLeft.velocityX = 3;
 		}
@@ -173,8 +154,7 @@ function draw() {
 
     
 	//Assigning functions when packageSprite touches zombieLeft, zombieRight or packageSprite's y position is greater than 800.
-	//if(packageSprite.isTouching(zombieLeft) || packageSprite.isTouching(zombieRight) || packageSprite.y > 800) {
-	//console.log(packageBody.position.x - zombieLeft.x);
+	
 	if((packageBody.position.x - zombieLeft.x < 30) || (zombieRight.x - packageBody.position.x < 30)) {
 		//Setting zombieLeft and zombieRight's velocityX to 0.
 		zombieLeft.velocityX = 0;
@@ -190,22 +170,6 @@ function draw() {
 		text("Refresh the page to retry.", 210,500);
 	}
 
-	/*
-	//Setting a condition when Right Arrow key is pressed.
-	//If the condition is true, zombie_sound is played; else success_sound is played.
-	if(keyDown(RIGHT_ARROW)) {
-		if(packageSprite.x < 375 || packageSprite.x > 425) {
-			if(packageSprite.y < 200) {
-				zombie_sound.play();
-			}
-		}
-		else {
-			if(packageSprite.y < 200) {
-				success_sound.play();
-			}
-		}
-	}
-	*/
 	//Displaying info text.
 	fill("white");
 	textFont("segoe script");
